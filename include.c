@@ -10,6 +10,13 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "so_long.h"
+
+void	ft_putchar(char c)
+{
+	write (1, &c, 1);
+}
+
 char	*ft_strrchr(const char *s, int c)
 {
 	int	i;
@@ -22,26 +29,26 @@ char	*ft_strrchr(const char *s, int c)
 	return (NULL);
 }
 
-void	ft_putnbr_fd(int n)
+void	ft_putnbr(int n)
 {
 	long	nb;
 
 	nb = n;
 	if (nb < 0)
 	{
-		ft_putchar_fd('-');
+		ft_putchar('-');
 		nb = nb * -1;
 	}
 	if (nb < 10)
-		ft_putchar_fd(nb + '0');
+		ft_putchar(nb + '0');
 	else
 	{
-		ft_putnbr_fd(nb / 10);
-		ft_putnbr_fd(nb % 10);
+		ft_putnbr(nb / 10);
+		ft_putnbr(nb % 10);
 	}
 }
 
-void	ft_putstr_fd(char *s)
+void	ft_putstr(char *s)
 {
 	int	i;
 

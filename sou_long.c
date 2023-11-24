@@ -10,8 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "sou_long.h"
+#include "so_long.h"
 
+void long_line()
 
 int	main(int ac, char **av)
 {
@@ -19,6 +20,12 @@ int	main(int ac, char **av)
 	t_map	info;
 
 	i = 0;
-	if (ac != 2)
-		write(1, "Error\n", 6);
+
+	if (ac == 2)
+	{
+		whish_map_name(av[1])
+		whish_map(av[1], &info);
+		long_line(info);
+	}
 }
+
