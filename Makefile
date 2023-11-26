@@ -1,33 +1,41 @@
-
-
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: mchaaibi <mchaaibi@student.42.fr>          +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2023/11/24 22:40:29 by mchaaibi          #+#    #+#              #
+#    Updated: 2023/11/25 20:36:39 by mchaaibi         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
 
 NAME = so_long
 
-
-HEADER = so_long.h
-
-CC = cc
+CC = cc -g
 
 CFLAGS = -Wall -Wextra -Werror
 
-FILES = so_long.c include.c get_next_line/get_next_line.c get_next_line/get_next_line_utils.c \
-	 map.c libft.c pars.c function_mlx.c 
+HEADER = so_long.h
 
-OBJ = $(FILES:.c=.o)
+SOURCES =  include.c map.c pars.c so_long.c \
+			./get_next_line/get_next_line.c ./get_next_line/get_next_line_utils.c\
+			functions_mlx.c functions.c function.c fun_utilis.c exi_t.c \
 
+OBJECTS = $(SOURCES:.c=.o)
+MLX = -lmlx -framework OpenGL -framework AppKit
 
-all: $(NAME)
+all : $(NAME)
 
-$(NAME): $(OBJ) $(HEADER)
-	$(CC) $(OBJ)  $(FILES) -lmlx -framework OpenGL -framework AppKit -o $(NAME)
-	
+$(NAME) : $(OBJECTS)  $(HEADER)
+		 $(CC) $(CFLAGS) $(MLX)  $(SOURCES) -o $(NAME)
 
-clean:
-	rm -f $(OBJ)
+clean : 
+		 rm -rf $(OBJECTS)
 
-fclean: clean
-	rm -f $(NAME)
+fclean : clean
+		 rm -rf $(NAME)
 
-re: fclean all
+re : fclean all
 
-.PHONY: all clean fclean re
+.PHONY : all clean fclean re

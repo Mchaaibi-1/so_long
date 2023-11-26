@@ -6,75 +6,13 @@
 /*   By: mchaaibi <mchaaibi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 00:57:34 by mchaaibi          #+#    #+#             */
-/*   Updated: 2023/11/24 00:57:35 by mchaaibi         ###   ########.fr       */
+/*   Updated: 2023/11/25 18:12:36 by mchaaibi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	whish_line(char *s1, char *s2)
-{
-	int	i;
-
-	i = 0;
-	if (!s1[0] || !s2[0])
-		ft_putstr("ERROR\n");
-	while (s1[i] && s2[i])
-	{
-		if (s1[i] == '\n' || s2[i] == '\n')
-			break ;
-		if (s1[i] != '1' || s2[i] != '1')
-			ft_putstr("ERROR\n");
-		i++;
-	}
-}
-
-void	whish_size(char **s, int n)
-{
-	int	i;
-	int	len0;
-	int	len1;
-
-	i = 1;
-	len0 = ft_strlen(s[0]);
-	while (i < n - 1)
-	{
-		len1 = ft_strlen(s[i]);
-		if (len0 != len1)
-			erreur();
-		i++;
-	}
-	len1 = ft_strlen(s[i]);
-	if (len0 != len1 + 1)
-		erreur();
-	if (len0 > 41)
-	{
-		write(1, "Error\nmap so_long\n", 18);
-		exit(1);
-	}
-	check_long(len1, n);
-}
-
-void	whish_wall(char **s, int n)
-{
-	int	i;
-	int	len;
-
-	i = 1;
-	len = ft_strlen(s[n - 1]);
-	whish_line(s[0], s[n - 1]);
-	while (s[i])
-	{
-		if (s[i][0] != '1' || s[i][len - 1] != '1')
-		{
-			write(1, "Error\n", 6)
-			exit(1);
-		}
-		i++;
-	}
-}
-
-int	x(char *map)
+int	x(const char *map)
 {
 	int		fd;
 	int		x;
@@ -83,18 +21,65 @@ int	x(char *map)
 	x = 0;
 	fd = open(map, O_RDONLY);
 	if (fd == -1)
-		ft_putstr(ERROR);
-	s = get_next_line(fd);
-	if (!str)
-		ft_putstr(ERROR);
-	x++;
+	{
+		ft_putstr("ERROR\n");
+		exit(1);
+	}
+	str = get_next_line(fd);
 	while (str)
 	{
-		free(s);
-		s = get_next_line(fd);
+		free(str);
+		str = get_next_line(fd);
 		x++;
 	}
-	if (!str)
-		x--;
+	close(fd);
 	return (x);
+}
+
+int	ft_strncmp(const char *s1, const char *s2, size_t n)
+{
+	size_t	i;
+
+	i = 0;
+	while ((s1[i] || s2[i]) && i < n)
+	{
+		if (s1[i] != s2[i])
+			return ((unsigned char)s1[i] - (unsigned char )s2[i]);
+		i++;
+	}
+	return (0);
+}
+
+char	*ft_strdup(char *s1)
+{
+	char	*s;
+	size_t	len;
+
+	len = ft_strlen(s1) + 1;
+	s = malloc(len * sizeof(char));
+	if (!s)
+		return (NULL);
+	ft_strlcpy(s, s1, len);
+	return (s);
+}
+
+size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
+{
+	size_t	rc;
+	size_t	i;
+
+	rc = 0;
+	i = 0;
+	while (src[rc])
+		rc++;
+	if (dstsize > 0)
+	{
+		while (src[i] && i < dstsize - 1)
+		{
+			dst[i] = src[i];
+			i++;
+		}
+		dst[i] = '\0';
+	}
+	return (rc);
 }

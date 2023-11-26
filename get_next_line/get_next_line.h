@@ -6,22 +6,22 @@
 /*   By: mchaaibi <mchaaibi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 11:54:24 by mchaaibi          #+#    #+#             */
-/*   Updated: 2023/06/11 20:19:52 by mchaaibi         ###   ########.fr       */
+/*   Updated: 2023/11/25 00:42:34 by mchaaibi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GET_NEXT_LINE_H
 # define GET_NEXT_LINE_H
 
-# ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 1337
-
-# endif
-
 # include <unistd.h>
 # include <stdlib.h>
 # include <fcntl.h>
 # include <stdio.h>
+
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 1337
+
+# endif
 
 char	*get_next_line(int fd);
 char	*ftstrchr(const char *s, int c);

@@ -6,21 +6,21 @@
 /*   By: mchaaibi <mchaaibi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/11 11:47:24 by mchaaibi          #+#    #+#             */
-/*   Updated: 2023/06/12 13:38:04 by mchaaibi         ###   ########.fr       */
+/*   Updated: 2023/11/25 00:23:17 by mchaaibi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-int	ft_strlen(char *str)
-{
-	int	i;
+// int	ft_strlen(char *str)
+// {
+// 	int	i;
 
-	i = 0;
-	while (str[i])
-	i++;
-	return (i);
-}
+// 	i = 0;
+// 	while (str[i])
+// 	i++;
+// 	return (i);
+// }
 
 char	*linegadgad(char *str)
 {
@@ -61,17 +61,4 @@ char	*get_next_line(int fd)
 	buf = linegadgad(s);
 	s = chyataline(s);
 	return (buf);
-}
-int main()
-{
-	int fd;
-	fd = open("get_next_line.c", O_RDONLY);
-	fd = open("get_next_line_utils.c", O_RDONLY);
-	char *str;
-	while((str = get_next_line(fd)))
-	{
-		printf("%s", str);
-		free(str);
-	}
-	close(fd);
 }

@@ -6,7 +6,7 @@
 /*   By: mchaaibi <mchaaibi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 10:32:30 by mchaaibi          #+#    #+#             */
-/*   Updated: 2023/11/24 10:44:47 by mchaaibi         ###   ########.fr       */
+/*   Updated: 2023/11/25 00:23:56 by mchaaibi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	ft_putchar(char c)
 	write (1, &c, 1);
 }
 
-char	*ft_strrchr(const char *s, int c)
+char	*ft_strrchr(char *s, int c)
 {
 	int	i;
 
@@ -52,22 +52,22 @@ void	ft_putstr(char *s)
 {
 	int	i;
 
-i = (0);
+	i = (0);
 	if (!s[i])
 		return ;
 	while (s[i])
 	{
 		write(1, &s[i], 1);
-	    i++;
+		i++;
 	}
 }
 
-int	ft_strlen(const char *s)
+int	ft_strlen(char *s)
 {
 	int	i;
 
 	i = 0;
 	while (s[i])
-	i++;
+		i++;
 	return (i);
 }
